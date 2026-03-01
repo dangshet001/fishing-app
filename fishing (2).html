@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>钓鱼助手 - 专业版</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+body{background:#f5f9ff}
+.app{max-width:480px;margin:auto;background:#fff;min-height:100vh;position:relative;padding-bottom:60px}
+
+/* 顶部 */
+.header{background:#1A73E9;color:white;padding:18px 16px;text-align:center;font-size:18px;font-weight:600}
+
+/* 页面容器 */
+.page{display:none;padding:14px}
+.page.active{display:block}
+
+/* 天气卡片 */
+.weather-card{background:linear-gradient(90deg,#1A73E9,#00C6FF);color:white;padding:20px;border-radius:16px;margin-bottom:16px}
+.weather-title{font-size:14px;opacity:.9}
+.weather-main{font-size:22px;font-weight:bold;margin:4px 0}
+.weather-info{font-size:13px;line-height:1.5}
+
+/* 菜单 */
+.menu-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.menu-item{background:white;box-shadow:0 4px 12px rgba(0,0,0,.06);padding:16px 8px;border-radius:14px;text-align:center;font-size:13px}
+.menu-item img{width:32px;height:32px;margin-bottom:6px}
+
+/* 卡片 */
+.card{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:14px;margin-bottom:10px}
+.card-title{font-size:15px;font-weight:600;color:#1A73E9;margin-bottom:6px}
+.card-desc{font-size:13px;color:#444;line-height:1.5}
+
+/* 底部导航 */
+.nav{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:auto;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee}
+.nav-item{text-align:center;font-size:12px;color:#666}
+.nav-item.active{color:#1A73E9;font-weight:bold}
+
+/* 按钮 */
+.btn{background:#1A73E9;color:white;border:none;border-radius:10px;padding:10px 14px;width:100%;margin-top:10px;font-weight:bold}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<!-- 顶部 -->
+<div class="header">🎣 钓鱼助手 · 专业版</div>
+
+<!-- 首页 -->
+<div class="page active" id="page-home">
+    <div class="weather-card">
+        <div class="weather-title">今日适钓指数</div>
+        <div class="weather-main">⭐⭐⭐⭐ 非常适合</div>
+        <div class="weather-info">
+            温度：24℃ | 气压：1021hPa<br>
+            风向：东南风2级 | 湿度：62%
+        </div>
+    </div>
+
+    <div class="menu-grid">
+        <div class="menu-item" onclick="go('page-map')">🗺️<br>钓点地图</div>
+        <div class="menu-item" onclick="go('page-bait')">🎣<br>饵料配方</div>
+        <div class="menu-item" onclick="go('page-skill')">📚<br>钓鱼技巧</div>
+        <div class="menu-item" onclick="go('page-float')">⚓<br>调漂教程</div>
+        <div class="menu-item" onclick="go('page-record')">📸<br>渔获记录</div>
+        <div class="menu-item" onclick="go('page-community')">👥<br>钓友社区</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">今日推荐钓法</div>
+        <div class="card-desc">气压稳定，气温舒适，野钓优先选择草边、洄湾、铧尖位置，主攻鲫鱼、鲤鱼。</div>
+    </div>
+</div>
+
+<!-- 钓点地图 -->
+<div class="page" id="page-map">
+    <div style="font-size:16px;font-weight:bold;margin-bottom:12px">钓点地图</div>
+    <div class="card">📍 城郊野河（免费）鱼情：鲫鱼多</div>
+    <div class="card">📍 青山水库（免费）鱼情：鲤鱼、草鱼</div>
+    <div class="card">📍 欢乐黑坑（收费50元）鱼情：密度高</div>
+    <div class="card">📍 东湖湾（免费）鱼情：翘嘴、鲢鳙</div>
+</div>
+
+<!-- 饵料配方 -->
+<div class="page" id="page-bait">
+    <div style="font-size:16px;font-weight:bold;margin-bottom:12px">饵料配方库</div>
+    <div class="card"><div class="card-title">鲫鱼饵料</div><div class="card-desc">红虫+腥香饵+拉丝粉，野钓通杀</div></div>
+    <div class="card"><div class="card-title">鲤鱼饵料</div><div class="card-desc">螺鲤2号+玉米+发酵麦粒</div></div>
+    <div class="card"><div class="card-title">草鱼饵料</div><div class="card-desc">嫩玉米、青草、桑葚、麦粒</div></div>
+    <div class="card"><div class="card-title">鲢鳙饵料</div><div class="card-desc">酸臭饵、浮钓、雾化快</div></div>
+</div>
+
+<!-- 钓鱼技巧 -->
+<div class="page" id="page-skill">
+    <div style="font-size:16px;font-weight:bold;margin-bottom:12px">钓鱼技巧</div>
+    <div class="card">春钓滩、夏钓潭、秋钓荫、冬钓阳</div>
+    <div class="card">有风钓下风口，溶氧高，鱼更活跃</div>
+    <div class="card">野钓打窝：少量多次，留鱼持久</div>
+    <div class="card">鱼不开口 → 换饵、换钓位、调灵钓钝</div>
+</div>
+
+<!-- 调漂教程 -->
+<div class="page" id="page-float">
+    <div style="font-size:16px;font-weight:bold;margin-bottom:12px">调漂教程</div>
+    <div class="card">空钩半水调4目 → 挂饵钓2目（最通用）</div>
+    <div class="card">野钓：调钝更稳，避免假口</div>
+    <div class="card">黑坑：调灵，抓口更准</div>
+    <div class="card">流水：跑铅钓法，抗水流</div>
+</div>
+
+<!-- 渔获记录 -->
+<div class="page" id="page-record">
+    <div style="font-size:16px;font-weight:bold;margin-bottom:12px">渔获记录</div>
+    <div class="card">2026-03-01 鲫鱼 3条 0.8kg</div>
+    <div class="card">2026-02-29 鲤鱼 1条 2.3kg</div>
+    <div class="card">2026-02-28 翘嘴 5条 1.2kg</div>
+    <button class="btn">+ 添加新渔获</button>
+</div>
+
+<!-- 钓友社区 -->
+<div class="page" id="page-community">
+    <div style="font-size:16px;font-weight:bold;margin-bottom:12px">钓友社区</div>
+    <div class="card">老王：今天野河狂拉鲫鱼20条！</div>
+    <div class="card">渔乐人生：黑坑上岸，爆护30斤！</div>
+    <div class="card">新手小李：求大神教调漂～</div>
+    <button class="btn">📝 发布动态</button>
+</div>
+
+<!-- 底部导航 -->
+<div class="nav">
+    <div class="nav-item active" onclick="show('home')">首页</div>
+    <div class="nav-item" onclick="show('map')">钓点</div>
+    <div class="nav-item" onclick="show('record')">记录</div>
+    <div class="nav-item" onclick="show('community')">社区</div>
+</div>
+
+</div>
+
+<script>
+function show(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
+    document.getElementById('page-'+page).classList.add('active')
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'))
+    event.currentTarget.classList.add('active')
+}
+function go(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
+    document.getElementById(page).classList.add('active')
+}
+</script>
+</body>
+</html>
